@@ -28,6 +28,7 @@ class App extends Component {
   addToCart(item) {
     this.setState({
       cart: [...this.state.cart, item]
+      
     });
   }
   removeFromCart(index) {
@@ -49,15 +50,15 @@ class App extends Component {
     }
   }
   render() {
-    const { products, showCart } = this.state;
+    const { products, cart, showCart } = this.state;
     return (
       <div className="App">
         <NavBar navigate={this.navigate} />
         <div className="main-container">
           {showCart ? (
-            <ShoppingCart cart={this.state.cart} />
+            <ShoppingCart cart={cart} removeFromCart={this.removeFromCart}/>
           ) : (
-            <StoreFront products={products} />
+            <StoreFront products={products} addToCart={this.addToCart} />
           )}
         </div>
       </div>
